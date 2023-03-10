@@ -48,9 +48,10 @@ public:
         if (!f1 or !f2 or !f3 or !f4 or !f5 or !f6 or !f7 or !f8 or !f9 or !f10 or !f11 or !f12)
         {
             // file check
-            cout << "Something is wrong!!";
+            cout << "Something is wrong!! File is missing!\n";
             return;
         }
+        // taking fastfood info from file
         while (!f1.eof())
         {
             getline(f1, s);
@@ -66,6 +67,7 @@ public:
             f9 >> price;
             ff_profit.push_back(price);
         }
+        // taking drinks info from file
         while (!f2.eof())
         {
             getline(f2, s);
@@ -81,7 +83,7 @@ public:
             f10 >> price;
             d_profit.push_back(price);
         }
-
+        // taking cofees info from file
         while (!f3.eof())
         {
             getline(f3, s);
@@ -97,7 +99,7 @@ public:
             f11 >> price;
             co_profit.push_back(price);
         }
-
+        // taking tea info from file
         while (!f4.eof())
         {
             getline(f4, s);
@@ -179,15 +181,19 @@ void adminsection()
             f2.open("fastfood_price.txt", ios::app);
             f3.open("fastfood_profit.txt", ios::app);
             cin.ignore();
+
             cout << "Enter Fastfood Item: ";
             getline(cin, s);
             cout << "Enter price: ";
             cin >> price;
             cout << "Enter profit: ";
             cin >> profit;
-            f1 << s << endl;
-            f2 << price << endl;
-            f3 << profit << endl;
+            f1 << endl
+               << s;
+            f2 << endl
+               << price;
+            f3 << endl
+               << profit;
             f1.close();
             f2.close();
             f3.close();
@@ -199,15 +205,18 @@ void adminsection()
             f2.open("drinks_price.txt", ios::app);
             f3.open("drinks_profit.txt", ios::app);
             cin.ignore();
-            cout << "Enter Fastfood Item: ";
+            cout << "Enter Drink's Item: ";
             getline(cin, s);
             cout << "Enter price: ";
             cin >> price;
             cout << "Enter profit: ";
             cin >> profit;
-            f1 << s << endl;
-            f2 << price << endl;
-            f3 << profit << endl;
+            f1 << endl
+               << s;
+            f2 << endl
+               << price;
+            f3 << endl
+               << profit;
             f1.close();
             f2.close();
             f3.close();
@@ -219,15 +228,18 @@ void adminsection()
             f2.open("cofee_price.txt", ios::app);
             f3.open("cofee_profit.txt", ios::app);
             cin.ignore();
-            cout << "Enter Fastfood Item: ";
+            cout << "Enter Cofee's Item: ";
             getline(cin, s);
             cout << "Enter price: ";
             cin >> price;
             cout << "Enter profit: ";
             cin >> profit;
-            f1 << s << endl;
-            f2 << price << endl;
-            f3 << profit << endl;
+            f1 << endl
+               << s;
+            f2 << endl
+               << price;
+            f3 << endl
+               << profit;
             f1.close();
             f2.close();
             f3.close();
@@ -239,15 +251,18 @@ void adminsection()
             f2.open("tea_price.txt", ios::app);
             f3.open("tea_profit.txt", ios::app);
             cin.ignore();
-            cout << "Enter Fastfood Item: ";
+            cout << "Enter Tea's Item: ";
             getline(cin, s);
             cout << "Enter price: ";
             cin >> price;
             cout << "Enter profit: ";
             cin >> profit;
-            f1 << s << endl;
-            f2 << price << endl;
-            f3 << profit << endl;
+            f1 << endl
+               << s;
+            f2 << endl
+               << price;
+            f3 << endl
+               << profit;
             f1.close();
             f2.close();
             f3.close();
@@ -260,9 +275,9 @@ void adminsection()
     else if (choice == 2)
     {
         FooD f1;
-        string s;
         show_allproduct(f1);
         cout << "Enter a name you want to delete: ";
+        string s;
         cin >> s;
         int flag = 0;
         if (find(f1.ff.begin(), f1.ff.end(), s) != f1.ff.end())
@@ -274,13 +289,27 @@ void adminsection()
             f11.clear();
             f12.clear();
             f13.clear();
+            int x = 1;
             for (int i = 0; i < f1.ff.size(); i++)
             {
                 if (f1.ff[i] == s)
                     continue;
-                f11 << f1.ff[i] << endl;
-                f12 << f1.ff_price[i] << endl;
-                f13 << f1.ff_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.ff[i];
+                    f12 << f1.ff_price[i];
+                    f13 << f1.ff_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.ff[i];
+                    f12 << endl
+                        << f1.ff_price[i];
+                    f13 << endl
+                        << f1.ff_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -295,13 +324,27 @@ void adminsection()
             f11.clear();
             f12.clear();
             f13.clear();
+            int x = 1;
             for (int i = 0; i < f1.drinks.size(); i++)
             {
                 if (f1.drinks[i] == s)
                     continue;
-                f11 << f1.drinks[i] << endl;
-                f12 << f1.d_price[i] << endl;
-                f13 << f1.d_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.drinks[i];
+                    f12 << f1.d_price[i];
+                    f13 << f1.d_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.drinks[i];
+                    f12 << endl
+                        << f1.d_price[i];
+                    f13 << endl
+                        << f1.d_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -316,6 +359,7 @@ void adminsection()
             f11.clear();
             f12.clear();
             f13.clear();
+            int x = 1;
             for (int i = 0; i < f1.cofee.size(); i++)
             {
                 if (f1.cofee[i] == s)
@@ -323,6 +367,22 @@ void adminsection()
                 f11 << f1.cofee[i] << endl;
                 f12 << f1.co_price[i] << endl;
                 f13 << f1.co_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.cofee[i];
+                    f12 << f1.co_price[i];
+                    f13 << f1.co_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.cofee[i];
+                    f12 << endl
+                        << f1.co_price[i];
+                    f13 << endl
+                        << f1.co_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -337,13 +397,27 @@ void adminsection()
             f11.clear();
             f12.clear();
             f13.clear();
+            int x = 1;
             for (int i = 0; i < f1.tea.size(); i++)
             {
                 if (f1.tea[i] == s)
                     continue;
-                f11 << f1.tea[i] << endl;
-                f12 << f1.tea_price[i] << endl;
-                f13 << f1.tea_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.tea[i];
+                    f12 << f1.tea_price[i];
+                    f13 << f1.tea_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.tea[i];
+                    f12 << endl
+                        << f1.tea_price[i];
+                    f13 << endl
+                        << f1.tea_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -355,11 +429,13 @@ void adminsection()
     else if (choice == 3)
     {
         FooD f1;
-        string s;
         show_allproduct(f1);
+        string s;
         cout << "Enter a name you want to Modify: ";
-        cin >> s;
+        cin.ignore();
+        getline(cin, s);
         int flag = 0;
+        int x = 1;
         if (find(f1.ff.begin(), f1.ff.end(), s) != f1.ff.end())
         {
             ofstream f11, f12, f13;
@@ -373,11 +449,11 @@ void adminsection()
             {
                 if (f1.ff[i] == s)
                 {
-                    cout << f1.ff[i] << endl;
-                    cout << f1.ff_price[i] << endl;
-                    cout << f1.ff_profit[i] << endl;
+                    cout << "Item : " << f1.ff[i] << endl;
+                    cout << "Price : " << f1.ff_price[i] << endl;
+                    cout << "Profit : " << f1.ff_profit[i] << endl;
                     int modify;
-                    cout << "You want to modify?";
+                    cout << "You want to modify?\n";
                     cout << "1. Name.\n";
                     cout << "2. Price.\n";
                     cout << "3. Profit.\n";
@@ -408,9 +484,22 @@ void adminsection()
                         f1.ff_profit[i] = profit;
                     }
                 }
-                f11 << f1.ff[i] << endl;
-                f12 << f1.ff_price[i] << endl;
-                f13 << f1.ff_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.ff[i];
+                    f12 << f1.ff_price[i];
+                    f13 << f1.ff_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.ff[i];
+                    f12 << endl
+                        << f1.ff_price[i];
+                    f13 << endl
+                        << f1.ff_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -429,11 +518,11 @@ void adminsection()
             {
                 if (f1.drinks[i] == s)
                 {
-                    cout << f1.drinks[i] << endl;
-                    cout << f1.d_price[i] << endl;
-                    cout << f1.d_profit[i] << endl;
+                    cout << "Item : " << f1.drinks[i] << endl;
+                    cout << "Price : " << f1.d_price[i] << endl;
+                    cout << "Profit : " << f1.d_profit[i] << endl;
                     int modify;
-                    cout << "You want to modify?";
+                    cout << "You want to modify?\n";
                     cout << "1. Name.\n";
                     cout << "2. Price.\n";
                     cout << "3. Profit.\n";
@@ -464,9 +553,22 @@ void adminsection()
                         f1.d_profit[i] = profit;
                     }
                 }
-                f11 << f1.drinks[i] << endl;
-                f12 << f1.d_price[i] << endl;
-                f13 << f1.d_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.drinks[i];
+                    f12 << f1.d_price[i];
+                    f13 << f1.d_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.drinks[i];
+                    f12 << endl
+                        << f1.d_price[i];
+                    f13 << endl
+                        << f1.d_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -485,11 +587,11 @@ void adminsection()
             {
                 if (f1.cofee[i] == s)
                 {
-                    cout << f1.cofee[i] << endl;
-                    cout << f1.co_price[i] << endl;
-                    cout << f1.co_profit[i] << endl;
+                    cout << "Item : " << f1.cofee[i] << endl;
+                    cout << "Price : " << f1.co_price[i] << endl;
+                    cout << "Profit : " << f1.co_profit[i] << endl;
                     int modify;
-                    cout << "You want to modify?";
+                    cout << "You want to modify?\n";
                     cout << "1. Name.\n";
                     cout << "2. Price.\n";
                     cout << "3. Profit.\n";
@@ -520,9 +622,22 @@ void adminsection()
                         f1.co_profit[i] = profit;
                     }
                 }
-                f11 << f1.cofee[i] << endl;
-                f12 << f1.co_price[i] << endl;
-                f13 << f1.co_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.cofee[i];
+                    f12 << f1.co_price[i];
+                    f13 << f1.co_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.cofee[i];
+                    f12 << endl
+                        << f1.co_price[i];
+                    f13 << endl
+                        << f1.co_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -541,11 +656,11 @@ void adminsection()
             {
                 if (f1.tea[i] == s)
                 {
-                    cout << f1.tea[i] << endl;
-                    cout << f1.tea_price[i] << endl;
-                    cout << f1.tea_profit[i] << endl;
+                    cout << "Item : " << f1.tea[i] << endl;
+                    cout << "Price : " << f1.tea_price[i] << endl;
+                    cout << "Profit : " << f1.tea_profit[i] << endl;
                     int modify;
-                    cout << "You want to modify?";
+                    cout << "You want to modify?\n";
                     cout << "1. Name.\n";
                     cout << "2. Price.\n";
                     cout << "3. Profit.\n";
@@ -576,9 +691,22 @@ void adminsection()
                         f1.tea_profit[i] = profit;
                     }
                 }
-                f11 << f1.tea[i] << endl;
-                f12 << f1.tea_price[i] << endl;
-                f13 << f1.tea_profit[i] << endl;
+                if (x)
+                {
+                    f11 << f1.tea[i];
+                    f12 << f1.tea_price[i];
+                    f13 << f1.tea_profit[i];
+                    x = 0;
+                }
+                else
+                {
+                    f11 << endl
+                        << f1.tea[i];
+                    f12 << endl
+                        << f1.tea_price[i];
+                    f13 << endl
+                        << f1.tea_profit[i];
+                }
             }
             f11.close();
             f12.close();
@@ -889,6 +1017,5 @@ int main()
             customersection();
         }
     }
-
     return 0;
 }

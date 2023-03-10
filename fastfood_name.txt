@@ -1,10 +1,5 @@
-Chicken Burger
-Mutton Burger
-Potato Wages
-Potato chips
-Pizza(chicken)-9"
-Pizza(chicken)-12"
-pizza normal
-pizza normal 2
-pizza normal 3
-abcd
+Fastfood No1
+Fastfood No2
+Fastfood No3
+Fastfood No4
+Fastfood No5
