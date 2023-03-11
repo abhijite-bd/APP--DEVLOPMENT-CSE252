@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ss ' '
+#define sstt "\t\t"
 int i;
 void show_catagory()
 {
@@ -278,8 +279,8 @@ void adminsection()
         show_allproduct(f1);
         cout << "Enter a name you want to delete: ";
         string s;
-        cin >> s;
-        int flag = 0;
+        cin.ignore();
+        getline(cin, s);
         if (find(f1.ff.begin(), f1.ff.end(), s) != f1.ff.end())
         {
             ofstream f11, f12, f13;
@@ -434,7 +435,6 @@ void adminsection()
         cout << "Enter a name you want to Modify: ";
         cin.ignore();
         getline(cin, s);
-        int flag = 0;
         int x = 1;
         if (find(f1.ff.begin(), f1.ff.end(), s) != f1.ff.end())
         {
@@ -466,7 +466,8 @@ void adminsection()
                     {
                         string name;
                         cout << "Enter Name: ";
-                        cin >> name;
+                        cin.ignore();
+                        getline(cin, name);
                         f1.ff[i] = name;
                     }
                     else if (modify == 2)
@@ -535,7 +536,8 @@ void adminsection()
                     {
                         string name;
                         cout << "Enter Name: ";
-                        cin >> name;
+                        cin.ignore();
+                        getline(cin, name);
                         f1.drinks[i] = name;
                     }
                     else if (modify == 2)
@@ -604,7 +606,8 @@ void adminsection()
                     {
                         string name;
                         cout << "Enter Name: ";
-                        cin >> name;
+                        cin.ignore();
+                        getline(cin, name);
                         f1.cofee[i] = name;
                     }
                     else if (modify == 2)
@@ -673,7 +676,8 @@ void adminsection()
                     {
                         string name;
                         cout << "Enter Name: ";
-                        cin >> name;
+                        cin.ignore();
+                        getline(cin, name);
                         f1.tea[i] = name;
                     }
                     else if (modify == 2)
@@ -727,15 +731,24 @@ void print()
     f1.open("Money Receipt.txt", ios::out);
     int i = 1;
     double price = 0.0;
+    f1 << "Name" << setw(15) << ss << "Quantity" << sstt << "Price" << endl;
+    cout << "Name" << setw(15) << ss << "Quantity" << sstt << "Price" << endl;
     for (auto e : mname_quan_price)
     {
-        f1 << i++ << e.first << ss << e.second.first << ss << e.second.second << endl;
+        f1 << i++ << ss << e.first << setw(15) << ss << e.second.first << sstt << e.second.second << endl;
+        cout << i++ << ss << e.first << setw(5) << ss << e.second.first << sstt << e.second.second << endl;
         price += e.second.second;
     }
+    cout << "Price :" << price << endl;
+    f1 << "Price :" << price << endl;
     f1 << "VAT = " << price * .05 << endl;
+    cout << "VAT = " << price * .05 << endl;
     price += (price * .05);
     f1 << "Total = " << price << endl;
+    cout << "Total = " << price << endl;
     mname_quan_price.clear();
+    cout << endl;
+    cout << endl;
 }
 double price = 0;
 void buying_sec(int choice)
@@ -746,18 +759,18 @@ void buying_sec(int choice)
         int x = 0;
         while (1)
         {
-            cout << 0 << " Confirm";
+            cout << 0 << " Confirm\n";
             show_ff_price(cus);
             cout << -1 << " back\n";
             if (x)
-                cout << "You have selected: ";
+                cout << "You have selected: \n";
             int i = 1;
             if (mname_quan_price.size() > 0 and x)
-                cout << "Name" << ss << "Quantity" << ss << "Price" << endl;
-            else if (x)
+                cout << "Name" << setw(15) << ss << "Quantity" << sstt << "Price" << endl;
+            else if (!x)
                 cout << "Nothing\n";
             for (auto e : mname_quan_price)
-                cout << i++ << e.first << ss << e.second.first << ss << e.second.second << endl;
+                cout << i++ << ss << e.first << setw(5) << ss << e.second.first << sstt << e.second.second << endl;
 
             int take;
             cin >> take;
@@ -795,18 +808,18 @@ void buying_sec(int choice)
         int x = 0;
         while (1)
         {
-            cout << 0 << " Confirm";
+            cout << 0 << " Confirm\n";
             show_drinks_price(cus);
             cout << -1 << " back\n";
             if (x)
-                cout << "You have selected: ";
+                cout << "You have selected: \n";
             int i = 1;
             if (mname_quan_price.size() > 0 and x)
-                cout << "Name" << ss << "Quantity" << ss << "Price" << endl;
+                cout << "Name" << setw(15) << ss << "Quantity" << sstt << "Price" << endl;
             else if (x)
                 cout << "Nothing\n";
             for (auto e : mname_quan_price)
-                cout << i++ << e.first << ss << e.second.first << ss << e.second.second << endl;
+                cout << i++ << ss << e.first << setw(15) << ss << e.second.first << sstt << e.second.second << endl;
 
             int take;
             cin >> take;
@@ -844,18 +857,18 @@ void buying_sec(int choice)
         int x = 0;
         while (1)
         {
-            cout << 0 << " Confirm";
+            cout << 0 << " Confirm\n";
             show_cofee_price(cus);
             cout << -1 << " back\n";
             if (x)
-                cout << "You have selected: ";
+                cout << "You have selected: \n";
             int i = 1;
             if (mname_quan_price.size() > 0 and x)
-                cout << "Name" << ss << "Quantity" << ss << "Price" << endl;
+                cout << "Name" << setw(15) << ss << "Quantity" << sstt << "Price" << endl;
             else if (x)
                 cout << "Nothing\n";
             for (auto e : mname_quan_price)
-                cout << i++ << e.first << ss << e.second.first << ss << e.second.second << endl;
+                cout << i++ << ss << e.first << setw(5) << ss << e.second.first << sstt << e.second.second << endl;
 
             int take;
             cin >> take;
@@ -893,18 +906,18 @@ void buying_sec(int choice)
         int x = 0;
         while (1)
         {
-            cout << 0 << " Confirm";
+            cout << 0 << " Confirm\n";
             show_tea_price(cus);
             cout << -1 << " back\n";
             if (x)
-                cout << "You have selected: ";
+                cout << "You have selected: \n";
             int i = 1;
             if (mname_quan_price.size() > 0 and x)
-                cout << "Name" << ss << "Quantity" << ss << "Price" << endl;
-            else if (x)
+                cout << "Name" << setw(15) << ss << "Quantity" << sstt << "Price" << endl;
+            else if (!x)
                 cout << "Nothing\n";
             for (auto e : mname_quan_price)
-                cout << i++ << e.first << ss << e.second.first << ss << e.second.second << endl;
+                cout << i++ << ss << e.first << setw(5) << ss << e.second.first << sstt << e.second.second << endl;
 
             int take;
             cin >> take;
@@ -951,13 +964,13 @@ void customersection()
 
         int i = 1;
         if (x)
-            cout << "You have selected: ";
+            cout << "You have selected: \n";
         if (mname_quan_price.size() > 0 and x)
-            cout << "Name" << ss << "Quantity" << ss << "Price" << endl;
+            cout << setw(15) << "Name" << ss << "Quantity" << sstt << "Price" << endl;
         else if (x)
             cout << "Nothing\n";
         for (auto e : mname_quan_price)
-            cout << i++ << e.first << ss << e.second.first << ss << e.second.second << endl;
+            cout << i++ << ss << setw(5) << e.first << ss << e.second.first << sstt << e.second.second << endl;
         int choice;
         cout << "Enter a catagory :";
         cin >> choice;

@@ -1,0 +1,8 @@
+1 Cofee No4               4		136
+3 Drinks No2               2		44
+5 Drinks No3               2		46
+7 Fastfood No2               2		24
+9 Fastfood No3               1		13
+11 Tea No5               1		45
+VAT = 15.4
+Total = 323.4
