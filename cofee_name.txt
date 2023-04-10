@@ -1,5 +1,3 @@
-Cofee No1
-Cofee No2
-Cofee No3
-Cofee No4
-Cofee No5
+Black_Cofee 100 10
+Capacino 200 20
+Cold_Cofee 300 30

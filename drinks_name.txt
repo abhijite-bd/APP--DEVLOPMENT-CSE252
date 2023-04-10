@@ -1,5 +1,5 @@
-Drinks No1
-Drinks No2
-Drinks No3
-Drinks No4
-Drinks No5
+Coca-Cola-400ml 30 5
+Coca-Cola-1000ml 60 5
+Mirinda-1000ml 60 5
+Sprite-400ml 30 5
+sprite 100 8

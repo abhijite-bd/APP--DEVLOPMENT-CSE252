@@ -1,5 +1,5 @@
-Tea No1
-Tea No2
-Tea No3
-Tea No4
-Tea No5
+Black_Tea 15 5 
+Green_Tea 25 5
+Milk_Tea 30 5
+Milk_Tea(special) 60 15
+Malai_Tea 100 20
