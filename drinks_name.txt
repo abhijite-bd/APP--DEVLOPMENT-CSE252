@@ -1,5 +1,5 @@
-Coca-Cola-400ml 30 5
-Coca-Cola-1000ml 60 5
-Mirinda-1000ml 60 5
-Sprite-400ml 30 5
-sprite 100 8
+Coca-Cola-400ml 30 5 998
+Coca-Cola-1000ml 60 5 998
+Mirinda-1000ml 60 5 998
+Sprite-400ml 30 5 998
+sprite 100 8 998
