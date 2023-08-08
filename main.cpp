@@ -15,10 +15,20 @@ void convert(ofstream &f, string date, pair<int, int> val)
 void show_catagory()
 {
     cout << "Category: \n";
-    cout << "1. Fast Food\n";
-    cout << "2. Drinks\n";
+    cout << "1. Fast Food(Burger, Pizza ,Fries, Nachos)\n";
+    cout << "2. Drinks(Cold-Drinks & Juice)\n";
     cout << "3. Cofee\n";
     cout << "4. Tea\n";
+}
+int stoii(string s)
+{
+    int ans = 0, j = 1;
+    for (i = s.size() - 1; i >= 0; i--)
+    {
+        ans += (s[i] - '0') * j;
+        j *= 10;
+    }
+    return ans;
 }
 void load(ifstream &f1, vector<string> &vs1, vector<int> &vs2, vector<int> &vs3, vector<int> &vs4)
 {
@@ -31,17 +41,17 @@ void load(ifstream &f1, vector<string> &vs1, vector<int> &vs2, vector<int> &vs3,
             vs1.push_back(s);
         else if (k % 4 == 1)
         {
-            int d = stoi(s);
+            int d = stoii(s);
             vs2.push_back(d);
         }
         else if (k % 4 == 2)
         {
-            int d = stoi(s);
+            int d = stoii(s);
             vs3.push_back(d);
         }
         else if (k % 4 == 3)
         {
-            int d = stoi(s);
+            int d = stoii(s);
             vs4.push_back(d);
         }
         k++;
@@ -324,7 +334,8 @@ void print_transactions(FooD &cus, ofstream &f1, int mx)
     int totalsale = 0;
     int totalprofit = 0;
     cout << "\n\t\t\n";
-    cout << setw(10) << "Date" << setw(12) << "Sell" << setw(9) << "Profit\n";
+    cout << setw(7) << "Date" << setw(12) << "Sell" << setw(9) << "Profit\n";
+    f1 << setw(7) << "Date" << setw(12) << "Sell" << setw(9) << "Profit\n";
     for (auto it = all_sell.rbegin(); it != all_sell.rend() && count < mx; ++it)
     {
         cout << count + 1 << ss;
@@ -336,7 +347,7 @@ void print_transactions(FooD &cus, ofstream &f1, int mx)
     cout << "Day: " << count << endl;
     cout << "Totalsale: " << totalsale << endl;
     cout << "Profit: " << totalprofit << endl;
-    f1 << setw(10) << min(mx, count) << setw(15) << totalsale << setw(10) << totalprofit;
+    f1 << min(mx, count) << setw(15) << totalsale << setw(10) << totalprofit;
     cout << "\n\t\t\n";
     cout << "Transactions history is ready\n";
     cout << "A file is saves to directory\n\n";
@@ -569,7 +580,7 @@ void print(FooD &cus)
     cout << "Total = " << price << endl;
     for (auto e : mname_quan_profit)
         profit += e.second;
-    Sleep(7000);
+    Sleep(10000);
     string sday, smon;
     sday = to_string(day);
     smon = to_string(month);
@@ -649,9 +660,9 @@ void buying_sec(FooD &cus, int ch, vector<string> &ff_name, vector<int> &ff_pric
         {
             if (mname_quan_price.size() == 0)
             {
-                cout << "You haven't chose any product yet\n";
-                cout << "Try Aganin\n";
                 system("cls");
+                cout << "You haven't chose any product yet\n";
+                cout << "Try Again\n\n";
             }
             else
             {
@@ -666,7 +677,7 @@ void buying_sec(FooD &cus, int ch, vector<string> &ff_name, vector<int> &ff_pric
             int quan;
             while (cin >> quan and quan > ff_qty[take - 1] and quan != -1)
             {
-                cout << "Sorry Sir/Mam.\n We have just " << ff_qty[take - 1] << " pieces\n";
+                cout << "Sorry Sir/Maam.\n We have just " << ff_qty[take - 1] << " pieces\n";
                 cout << "Enter Quantity/(-1 for cancel this item): ";
             }
             if (quan == -1)
@@ -727,10 +738,10 @@ void customersection()
         }
         else if (choice == 0 and mname_quan_price.size() == 0)
         {
-            cout << "You haven't chose any product yet\n";
-            cout << "Try Aganin\n";
-            Sleep(2000);
             system("cls");
+            cout << "You haven't chose any product yet\n";
+            cout << "Try Again\n\n";
+            Sleep(1500);
         }
         else if (choice > 0 and choice < 5)
         {
@@ -773,7 +784,8 @@ int main()
         cout << "Log In As:\n";
         cout << "1 Admin\n";
         cout << "2 Customer\n";
-        cout << "0 Shut Down\n";
+        cout << "3 About Us\n";
+        cout << "0 Exit\n";
         cin >> choice;
         if (choice == 1)
         {
@@ -805,6 +817,11 @@ int main()
         {
             system("cls");
             customersection();
+        }
+        else if (choice == 3)
+        {
+            system("cls");
+            cout << "Not Written yet\n\n";
         }
         else
             return 0;

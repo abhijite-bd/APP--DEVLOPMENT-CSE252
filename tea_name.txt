@@ -3,3 +3,6 @@ Green_Tea 25 5 998
 Milk_Tea 30 5 998
 Milk_Tea(special) 60 15 998
 Malai_Tea 100 20 998
+Ginger_Tea 20 5 1000
+Tulsi_Tea 30 5 1000
+Two_Layer_Tea 20 5 996
