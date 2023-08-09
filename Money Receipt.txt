@@ -1,19 +1,12 @@
 Wellcome to HSTU Shop
-Name: Abhijite
+Name: abhijite
 Number: 01521529908
 
-Date: 31/7/2023
-Time: 16:7:11
+Date: 9/8/2023
+Time: 14:36:13
 
  Name                 Quantity     Price     
-1 Coca-Cola-400ml       3           90        
-2 Expresso              1           250       
-3 French_Fries          2           200       
-4 Latte                 2           400       
-5 Lemonade              1           50        
-6 Mutton_Burger         4           1400      
-7 Nachos                1           100       
-8 Pizza_Slice           4           400       
-9 Sprite-400ml          2           60        
-10 Two_Layer_Tea         4           80        
-Total = 3030
+1 Coca-Cola-1000ml      1           60        
+2 French_Fries          1           100       
+3 Pizza(Chicken)9"      1           444       
+Total = 604

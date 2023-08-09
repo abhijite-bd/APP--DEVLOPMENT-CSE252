@@ -3,9 +3,9 @@
 using namespace std;
 #define ss ' '
 int i;
-map<string, pair<int, int>> all_sell;         // date sale profit
-map<string, pair<int, int>> mname_quan_price; // item quantity price
-map<string, int> mname_quan_profit;           // item profit
+map<string, pair<int, int>> all_sell;
+map<string, pair<int, int>> mname_quan_price;
+map<string, int> mname_quan_profit;
 vector<pair<string, pair<string, int>>> selected;
 void convert(ofstream &f, string date, pair<int, int> val)
 {
@@ -16,7 +16,7 @@ void show_catagory()
 {
     cout << "Category: \n";
     cout << "1. Fast Food(Burger, Pizza ,Fries, Nachos)\n";
-    cout << "2. Drinks(Cold-Drinks & Juice)\n";
+    cout << "2. Drinks(Cold-Drinks & Juices)\n";
     cout << "3. Cofee\n";
     cout << "4. Tea\n";
 }
@@ -89,7 +89,6 @@ public:
         int price;
         if (!f1 or !f2 or !f3 or !f4 or !f22)
         {
-            // is all file are there?
             cout << "Something is wrong!!";
             return;
         }
@@ -162,21 +161,12 @@ public:
             cout << k++ << ss << e << endl;
     }
 };
-void add_item(FooD &cus, ofstream &f)
+void add_item(FooD &cus, ofstream &f, vector<string> &vs1, vector<int> &vs2, vector<int> &vs3, vector<int> &vs4)
 {
     string s;
     int price, profit, quantity;
     cout << "Enter new name(without space):";
-    cin.ignore();
-    getline(cin, s);
-
-    if (s.find(' ') != string::npos)
-    {
-        cout << "Wrong input\n";
-        Sleep(1500);
-        system("cls");
-        return;
-    }
+    cin >> s;
     cout << "Enter price: ";
     cin >> price;
     cout << "Enter profit: ";
@@ -184,12 +174,16 @@ void add_item(FooD &cus, ofstream &f)
     cout << "Enter quantity: ";
     cin >> quantity;
 
+    vs1.push_back(s);
+    vs2.push_back(price);
+    vs3.push_back(profit);
+    vs4.push_back(quantity);
     f << "\n"
       << s << " ";
     f << price << " ";
     f << profit << " ";
     f << quantity;
-    f.close();
+    // f.close();
     cout << endl
          << endl;
     cout << "Item added successfully\n";
@@ -225,19 +219,23 @@ void del_item(ofstream &f, vector<string> &vn, vector<int> &vpri, vector<int> &v
         cout << vqty[k - 1] << endl;
         cout << "Item deleted successfully\n";
         Sleep(2500);
-        vn.erase(vn.begin() + k - 1);
-        vpri.erase(vpri.begin() + k - 1);
-        vpro.erase(vpro.begin() + k - 1);
-        vpro.erase(vqty.begin() + k - 1);
+        auto it1 = vn.begin() + k - 1;
+        auto it2 = vpri.begin() + k - 1;
+        auto it3 = vpro.begin() + k - 1;
+        auto it4 = vqty.begin() + k - 1;
+        vn.erase(it1);
+        vpri.erase(it2);
+        vpro.erase(it3);
+        vpro.erase(it3);
         system("cls");
     }
+
     for (i = 0; i < vn.size(); i++)
     {
         f << vn[i] << " " << vpri[i] << " " << vpro[i] << ss << vqty[i];
         if (i + 1 != vn.size())
             f << endl;
     }
-    f.close();
 }
 void write(FooD &cus, ofstream &f1, ofstream &f2, ofstream &f3, ofstream &f4)
 {
@@ -292,15 +290,7 @@ void modify_item(ofstream &f, vector<string> &vn, vector<int> &vpri, vector<int>
     {
         cout << "Old item name: " << vn[k - 1] << endl;
         cout << "Enter new name(without space):";
-        cin.ignore();
-        getline(cin, s);
-        if (s.find(' ') != string::npos)
-        {
-            cout << "Wrong input\n";
-            Sleep(1500);
-            system("cls");
-            return;
-        }
+        cin >> s;
         cout << "Old item price: " << vpri[k - 1] << endl;
         cout << "Enter new price: :";
         cin >> price;
@@ -325,7 +315,6 @@ void modify_item(ofstream &f, vector<string> &vn, vector<int> &vpri, vector<int>
         if (i + 1 != vn.size())
             f << endl;
     }
-    f.close();
     system("cls");
 }
 void print_transactions(FooD &cus, ofstream &f1, int mx)
@@ -374,25 +363,25 @@ void adminsection()
             {
                 ofstream f1;
                 f1.open("fastfood_name.txt", ios::app);
-                add_item(cus, f1);
+                add_item(cus, f1, cus.ff_name, cus.ff_price, cus.ff_profit, cus.ff_qty);
             }
             else if (ch == 2)
             {
                 ofstream f1;
                 f1.open("drinks_name.txt", ios::app);
-                add_item(cus, f1);
+                add_item(cus, f1, cus.drinks_name, cus.d_price, cus.d_profit, cus.d_qty);
             }
             else if (ch == 3)
             {
                 ofstream f1;
                 f1.open("cofee_name.txt", ios::app);
-                add_item(cus, f1);
+                add_item(cus, f1, cus.cofee_name, cus.co_price, cus.co_profit, cus.co_qty);
             }
             else if (ch == 4)
             {
                 ofstream f1;
                 f1.open("tea_name.txt", ios::app);
-                add_item(cus, f1);
+                add_item(cus, f1, cus.tea_name, cus.tea_price, cus.tea_profit, cus.tea_qty);
             }
             else
             {
@@ -527,9 +516,9 @@ void print(FooD &cus)
     string s, num;
     f1.open("Money Receipt.txt", ios::out);
 
-    int price = 0.0, profit = 0.0;
+    int price = 0, profit = 0;
     f1 << "Wellcome to HSTU Shop\n";
-    cout << "Enter your name: ";
+    cout << "Enter your nick_name: ";
     cin >> s;
     cout << "Enter your number: ";
     cin >> num;
@@ -628,7 +617,7 @@ void buying_sec(FooD &cus, int ch, vector<string> &ff_name, vector<int> &ff_pric
     system("cls");
     while (1)
     {
-        cout << "Please chose a food:\n";
+        cout << "Please chose a food(input specific number):\n\n";
         if (ch == 1)
             show_ff_price(cus);
         else if (ch == 2)
@@ -637,11 +626,19 @@ void buying_sec(FooD &cus, int ch, vector<string> &ff_name, vector<int> &ff_pric
             show_cofee_price(cus);
         else
             show_tea_price(cus);
-        cout << 0 << " Confirm\n";
-        cout << -1 << " back\n";
+        if (mname_quan_price.size() == 0)
+        {
+            cout << endl;
+            cout << -1 << " back\n";
+        }
         // print selected part
         if (mname_quan_price.size() != 0)
+        {
+            cout << endl;
+            cout << 0 << " Confirm\n";
+            cout << -1 << " back\n\n";
             cout << "You have selected: ";
+        }
         int i = 1;
         if (mname_quan_price.size() > 0)
             cout << endl
@@ -693,7 +690,7 @@ void buying_sec(FooD &cus, int ch, vector<string> &ff_name, vector<int> &ff_pric
         }
         else
         {
-            cout << "Try Aganin\n";
+            cout << "Try Again\n";
             Sleep(2000);
             system("cls");
         }
@@ -708,7 +705,6 @@ void customersection()
     cout << "Wellcome Sir/Mam:\n";
     cout << "Categary adding...\n";
     cout << "System Booting...\n";
-    // cout << "Which food you want to taste: \n";
     Sleep(2000);
     while (1)
     {
@@ -769,7 +765,7 @@ void customersection()
         }
         else
         {
-            cout << "Try Aganin\n";
+            cout << "Try Again\n";
             Sleep(2000);
             system("cls");
         }
@@ -784,7 +780,7 @@ int main()
         cout << "Log In As:\n";
         cout << "1 Admin\n";
         cout << "2 Customer\n";
-        cout << "3 About Us\n";
+        cout << "3 About\n";
         cout << "0 Exit\n";
         cin >> choice;
         if (choice == 1)
@@ -821,7 +817,15 @@ int main()
         else if (choice == 3)
         {
             system("cls");
-            cout << "Not Written yet\n\n";
+            cout << "It will provide:\n \
+            1)To take orders\n \
+            2)To add item \n \
+            3)To remove item \n \
+            4)To edit item \n \
+            5)To display menu \n \
+            6)To show bill \n \
+            7)To display total sale reports\n\n";
+
         }
         else
             return 0;
